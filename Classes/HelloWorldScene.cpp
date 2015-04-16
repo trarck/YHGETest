@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "TestMessage/TestMessage.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -37,17 +38,10 @@ bool HelloWorld::init()
 
     // add a "close" icon to exit the progress. it's an autorelease object
     
-	MessageManager* mm = MessageManager::getInstance();
+	TestMessage* tm=new TestMessage();
+	tm->run();
 
-	unsigned int type = 1;
-
-	Node* n1 = Node::create();
-
-	Node* n2 = Node::create();
-
-	mm->registerReceiver(n1, type, n2, MESSAGE_SELECTOR(HelloWorld::handleMsg));
-
-	mm->dispatchMessage(type,n2,n1);
+	tm->release();
     
     return true;
 }

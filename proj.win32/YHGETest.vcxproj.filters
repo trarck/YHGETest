@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\TestMessage">
+      <UniqueIdentifier>{0d52e65d-3969-4a7e-ba86-7411ad6f51c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,6 +24,15 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TestMessage\Car.cpp">
+      <Filter>src\TestMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestMessage\Man.cpp">
+      <Filter>src\TestMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestMessage\TestMessage.cpp">
+      <Filter>src\TestMessage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -31,6 +43,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestMessage\Car.h">
+      <Filter>src\TestMessage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestMessage\Datas.h">
+      <Filter>src\TestMessage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestMessage\Man.h">
+      <Filter>src\TestMessage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestMessage\TestMessage.h">
+      <Filter>src\TestMessage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
