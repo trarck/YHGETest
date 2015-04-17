@@ -13,6 +13,9 @@
     <Filter Include="src\TestMessage">
       <UniqueIdentifier>{0d52e65d-3969-4a7e-ba86-7411ad6f51c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\TestEvent">
+      <UniqueIdentifier>{cd616ce0-72c1-4044-8818-60df8db68241}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -32,6 +35,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TestMessage\TestMessage.cpp">
       <Filter>src\TestMessage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestEvent\ObjA.cpp">
+      <Filter>src\TestEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestEvent\ObjB.cpp">
+      <Filter>src\TestEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestEvent\TestEvent.cpp">
+      <Filter>src\TestEvent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +67,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TestMessage\TestMessage.h">
       <Filter>src\TestMessage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestEvent\EventDatas.h">
+      <Filter>src\TestEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestEvent\ObjA.h">
+      <Filter>src\TestEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestEvent\ObjB.h">
+      <Filter>src\TestEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestEvent\TestEvent.h">
+      <Filter>src\TestEvent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

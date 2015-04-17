@@ -141,6 +141,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\TestEvent\ObjA.cpp" />
+    <ClCompile Include="..\Classes\TestEvent\ObjB.cpp" />
+    <ClCompile Include="..\Classes\TestEvent\TestEvent.cpp" />
     <ClCompile Include="..\Classes\TestMessage\Car.cpp" />
     <ClCompile Include="..\Classes\TestMessage\Man.cpp" />
     <ClCompile Include="..\Classes\TestMessage\TestMessage.cpp" />
@@ -149,6 +152,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\TestEvent\EventDatas.h" />
+    <ClInclude Include="..\Classes\TestEvent\ObjA.h" />
+    <ClInclude Include="..\Classes\TestEvent\ObjB.h" />
+    <ClInclude Include="..\Classes\TestEvent\TestEvent.h" />
     <ClInclude Include="..\Classes\TestMessage\Car.h" />
     <ClInclude Include="..\Classes\TestMessage\Datas.h" />
     <ClInclude Include="..\Classes\TestMessage\Man.h" />
