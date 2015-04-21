@@ -1,5 +1,5 @@
-#ifndef CCLIBSTEST_MAN_H_
-#define CCLIBSTEST_MAN_H_
+#ifndef YHGEGEST_TESTEVENT_OBJA_H_
+#define YHGEGEST_TESTEVENT_OBJA_H_
 
 #include "cocos2d.h"
 #include <yhge/yhge.h>
@@ -13,4 +13,4 @@ public:
     int m_nWait;
 };
 
-#endif  // CCLIBSTEST_MAN_H_
+#endif  // YHGEGEST_TESTEVENT_OBJA_H_

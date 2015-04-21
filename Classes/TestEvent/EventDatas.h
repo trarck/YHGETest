@@ -1,39 +1,35 @@
-/*
- *  Datas.h
- *  Message
- *
- *  Created by trarck trarck on 11-12-16.
- *  Copyright 2011 yitengku.com. All rights reserved.
- *
- */
+#ifndef YHGEGEST_TESTEVENT_EVENTDATA_H_
+#define YHGEGEST_TESTEVENT_EVENTDATA_H_
+
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 
-typedef struct Register_Data{
+typedef struct Event_Register_Data{
 	int type;
 	cocos2d::Ref* sender;
-	cocos2d::Ref* receiver;
-    cocos2d::yhge::SEL_MessageHandler handle;
+	cocos2d::Ref* listener;
+    cocos2d::yhge::SEL_EventHandle handle;
 	
-} RegisterData;
+} EventRegisterData;
 
-typedef struct Dispatch_Data{
+typedef struct Event_Dispatch_Data{
 	int type;
 	cocos2d::Ref* sender;
-	cocos2d::Ref* receiver;
 	cocos2d::Ref* data;
-} DispatchData;
+} EventDispatchData;
 
-typedef struct DataItem{
-	RegisterData regiester;
-	DispatchData dispatch;
+typedef struct Event_Data_Item{
+	EventRegisterData regiester;
+	EventDispatchData dispatch;
     int result;
     std::string description;
-} DataItem;
+} EventDataItem;
 
 enum  {
-	MsgAll=0,
-	CarStop,
-	CarMove,
-	DirverCar
+	kEventWait=1,
+	kEventMove,
+	kEventStop,
+	kEventDirverCar
 };
+
+#endif  // YHGEGEST_TESTEVENT_EVENTDATA_H_

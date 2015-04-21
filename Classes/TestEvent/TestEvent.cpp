@@ -1,5 +1,5 @@
 #include "TestEvent.h"
-#include "Datas.h"
+#include "EventDatas.h"
 #include "ObjA.h"
 #include "ObjB.h"
 
@@ -12,7 +12,7 @@ void showTestFail(const char* msg)
     CCLOG("=========}test fail============");
 }
 
-void TestMessage::run()
+void TestEvent::run()
 {
     CCLOG("CTestMessagear::run");
     testRegiestAndSend();
@@ -20,38 +20,22 @@ void TestMessage::run()
 
 }
 
-void TestMessage::testRegiestAndSend()
+void TestEvent::testRegiestAndSend()
 {
-    CCLOG("********TestMessage::testRegiestAndSend{***************");
-    Man *aMan=new Man();
-	Car *aCar=new Car();
+    CCLOG("********TestEvent::testRegiestAndSend{***************");
+    ObjA *objA=new ObjA();
+	ObjB *objB=new ObjB();
 	
 	
-	DataItem datas[]={
-        //regist man CarStop from car 
-        //  car send CarStop to man
-		{CarStop,aCar,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,aCar,aMan,NULL,1,""},
-        //  car send CarStop to all
-		{CarStop,aCar,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,aCar,NULL,NULL,1,""},
-        //  null send CarStop to man
-		{CarStop,aCar,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,NULL,aMan,NULL,0,""},//no
-        //  null send CarStop to all
-		{CarStop,aCar,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,NULL,NULL,NULL,0,""},//no
-        //regist man CarStop from all
-        //  car send CarStop to man
-		{CarStop,NULL,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,aCar,aMan,NULL,1,""},
-         // car send CarStop to all
-		{CarStop,aCar,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,aCar,NULL,NULL,1,""},
-        //  null send CarStop to man
-		{CarStop,NULL,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,NULL,aMan,NULL,1,""},
-        //  null send CarStop to all
-		{CarStop,NULL,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,NULL,NULL,NULL,1,""},
-        //regist man ALL from car
-		{MsgAll,aCar,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,aCar,aMan,NULL,1,""}
+	EventDataItem datas[]={
+        //regist objB wait event 
+        //  objB trigger wait event
+		{kEventWait,objB,objA,YH_EVENT_SELECTOR(ObjA::wait),kEventWait,objB,NULL,1,""},
+        {kEventStop,objB,objA,YH_EVENT_SELECTOR(ObjA::wait),kEventWait,objB,NULL,0,""},
 	};
 
-	int dataLength=sizeof(datas)/sizeof(DataItem);
-	DataItem it;
+	int dataLength=sizeof(datas)/sizeof(EventDataItem);
+	EventDataItem it;
 	
 	struct timeval start;
     struct timeval end;
@@ -61,22 +45,22 @@ void TestMessage::testRegiestAndSend()
 
 	    for(int i=0;i<dataLength;i++){
 		    //CCLOG("do test %d",i);
-            aMan->m_nWait=0;
+            objA->m_nWait=0;
 
 		    it=datas[i];
-		    RegisterData rd=it.regiester;
-		    DispatchData dd=it.dispatch;
+		    EventRegisterData rd=it.regiester;
+		    EventDispatchData dd=it.dispatch;
 		    //regiester
-		    MessageManager * mm=new MessageManager();
-            mm->init();
-            mm->registerReceiver(rd.receiver,rd.type,rd.sender,rd.handle);
+		    EventListenerManager * em=new EventListenerManager();
+            em->init();
+            em->addEventListener(rd.sender,rd.type,rd.listener,rd.handle);
 
 		    //dispatch
-		    Message *message=new Message();
-            message->initWithType(dd.type,dd.sender,dd.receiver,dd.data);       
-            mm->dispatchMessage(message);
-            mm->release();
-            if(aMan->m_nWait!=it.result){
+		    yhge::Event *event=new yhge::Event();
+            event->initEvent(dd.type,true,ture);       
+            em->dispatchEvent(objB,event);
+            em->release();
+            if(objA->m_nWait!=it.result){
                 char buffer[255];
                 sprintf(buffer,"index:%d,%s",i,it.description.c_str());
                 showTestFail(buffer);
@@ -85,28 +69,27 @@ void TestMessage::testRegiestAndSend()
     }
     gettimeofday(&end,NULL);
     CCLOG("use:%ld,%d",end.tv_sec-start.tv_sec,end.tv_usec-start.tv_usec);
-    CCLOG("********}TestMessage::testRegiestAndSend***************");
+    CCLOG("********}TestEvent::testRegiestAndSend***************");
 }
 
 
-void TestMessage::testRemove()
+void TestEvent::testRemove()
 {
-    CCLOG("********TestMessage::testRemove{***************");
-    Man *aMan=new Man();
-	Car *aCar=new Car();
+    CCLOG("********TestEvent::testRemove{***************");
+    ObjA *objA=new ObjA();
+	ObjB *objB=new ObjB();
 	
 	
-	DataItem datas[]={
+	EventDataItem datas[]={
         //regist man CarStop from car 
         //  car send CarStop to man
-		{CarStop,aCar,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,aCar,aMan,NULL,0,""},
-        //  car send CarStop to all
-		{CarStop,aCar,aMan,MESSAGE_SELECTOR(Man::wait),CarStop,aCar,NULL,NULL,0,""},
+		{kEventWait,objB,objA,YH_EVENT_SELECTOR(ObjA::wait),kEventWait,objB,NULL,1,""},
+        {kEventStop,objB,objA,YH_EVENT_SELECTOR(ObjA::wait),kEventWait,objB,NULL,0,""},
        
 	};
 
-	int dataLength=sizeof(datas)/sizeof(DataItem);
-	DataItem it;
+	int dataLength=sizeof(datas)/sizeof(EventDataItem);
+	EventDataItem it;
 	
 	struct timeval start;
     struct timeval end;
@@ -114,25 +97,25 @@ void TestMessage::testRemove()
 	
 	for(int i=0;i<dataLength;i++){
 		CCLOG("do test %d",i);
-        aMan->m_nWait=0;
+        objA->m_nWait=0;
 
 		it=datas[i];
-		RegisterData rd=it.regiester;
-		DispatchData dd=it.dispatch;
+		EventRegisterData rd=it.regiester;
+		EventDispatchData dd=it.dispatch;
 		//regiester
-		MessageManager * mm=new MessageManager();
-        mm->init();
-        mm->registerReceiver(rd.receiver,rd.type,rd.sender,rd.handle);
+		EventListenerManager * em=new EventListenerManager();
+        em->init();
+        em->addEventListener(rd.sender,rd.type,rd.listener,rd.handle);
 
         //remove register
-        mm->removeReceiver(rd.receiver);
+        em->removeEventListener(rd.sender);
 
 		//dispatch
-		Message *message=new Message();
-        message->initWithType(dd.type,dd.sender,dd.receiver,dd.data);       
-        mm->dispatchMessage(message);
-        mm->release();
-        if(aMan->m_nWait!=it.result){
+		yhge::Event *event=new yhge::Event();
+        event->initEvent(dd.type,true,ture);            
+		em->dispatchEvent(objB,event);
+        em->release();
+        if(objA->m_nWait!=it.result){
             char buffer[255];
             sprintf(buffer,"index:%d,%s",i,it.description.c_str());
             showTestFail(buffer);
@@ -140,5 +123,5 @@ void TestMessage::testRemove()
 	}
     gettimeofday(&end,NULL);
     CCLOG("use:%ld,%d",end.tv_sec-start.tv_sec,end.tv_usec-start.tv_usec);
-    CCLOG("********}TestMessage::testRemove***************");
+    CCLOG("********}TestEvent::testRemove***************");
 }

@@ -1,5 +1,5 @@
-#ifndef CCLIBSTEST_TestMessage_H_
-#define CCLIBSTEST_TestMessage_H_
+#ifndef YHGEGEST_TESTEVENT_TESTEVENT_H_
+#define YHGEGEST_TESTEVENT_TESTEVENT_H_
 
 #include "cocos2d.h"
 
@@ -11,4 +11,4 @@ public:
     void testRemove();
 };
 
-#endif  // CCLIBSTEST_TestMessage_H_
+#endif  // YHGEGEST_TESTEVENT_TESTEVENT_H_
