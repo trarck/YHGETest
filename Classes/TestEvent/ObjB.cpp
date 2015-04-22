@@ -2,7 +2,7 @@
 
 using namespace cocos2d;
 
-void ObjB::stop()
+void ObjB::stop(yhge::Event* e)
 {
     CCLOG("ObjB::stop");
 }

@@ -141,6 +141,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\Test.cpp" />
     <ClCompile Include="..\Classes\TestEvent\ObjA.cpp" />
     <ClCompile Include="..\Classes\TestEvent\ObjB.cpp" />
     <ClCompile Include="..\Classes\TestEvent\TestEvent.cpp" />
@@ -152,6 +153,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\Test.h" />
     <ClInclude Include="..\Classes\TestEvent\EventDatas.h" />
     <ClInclude Include="..\Classes\TestEvent\ObjA.h" />
     <ClInclude Include="..\Classes\TestEvent\ObjB.h" />

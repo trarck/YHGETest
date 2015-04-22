@@ -4,11 +4,11 @@
 #include "cocos2d.h"
 #include <yhge/yhge.h>
 
-class ObjA : public cocos2d::Ref
+class ObjA : public cocos2d::Node
 {
 public:
 
-    void wait(yhge::Event* event);
+	void wait(cocos2d::yhge::Event* e);
 
     int m_nWait;
 };

@@ -6,12 +6,6 @@
 using namespace cocos2d;
 using namespace cocos2d::yhge;
 
-void showTestFail(const char* msg)
-{
-    CCLOG("=========test fail{============\n%s",msg);
-    CCLOG("=========}test fail============");
-}
-
 void TestEvent::run()
 {
     CCLOG("CTestMessagear::run");
@@ -57,8 +51,8 @@ void TestEvent::testRegiestAndSend()
 
 		    //dispatch
 		    yhge::Event *event=new yhge::Event();
-            event->initEvent(dd.type,true,ture);       
-            em->dispatchEvent(objB,event);
+            event->initEvent(dd.type,true,true);       
+            em->dispatchEvent(dd.sender,event);
             em->release();
             if(objA->m_nWait!=it.result){
                 char buffer[255];
@@ -83,7 +77,7 @@ void TestEvent::testRemove()
 	EventDataItem datas[]={
         //regist man CarStop from car 
         //  car send CarStop to man
-		{kEventWait,objB,objA,YH_EVENT_SELECTOR(ObjA::wait),kEventWait,objB,NULL,1,""},
+		{kEventWait,objB,objA,YH_EVENT_SELECTOR(ObjA::wait),kEventWait,objB,NULL,0,""},
         {kEventStop,objB,objA,YH_EVENT_SELECTOR(ObjA::wait),kEventWait,objB,NULL,0,""},
        
 	};
@@ -112,8 +106,8 @@ void TestEvent::testRemove()
 
 		//dispatch
 		yhge::Event *event=new yhge::Event();
-        event->initEvent(dd.type,true,ture);            
-		em->dispatchEvent(objB,event);
+        event->initEvent(dd.type,true,true);            
+		em->dispatchEvent(dd.sender,event);
         em->release();
         if(objA->m_nWait!=it.result){
             char buffer[255];
@@ -124,4 +118,11 @@ void TestEvent::testRemove()
     gettimeofday(&end,NULL);
     CCLOG("use:%ld,%d",end.tv_sec-start.tv_sec,end.tv_usec-start.tv_usec);
     CCLOG("********}TestEvent::testRemove***************");
+}
+
+
+void TestEvent::showTestFail(const char* msg)
+{
+	CCLOG("=========test fail{============\n%s", msg);
+	CCLOG("=========}test fail============");
 }

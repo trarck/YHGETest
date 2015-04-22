@@ -6,16 +6,16 @@
 
 typedef struct Event_Register_Data{
 	int type;
-	cocos2d::Ref* sender;
-	cocos2d::Ref* listener;
+	cocos2d::Node* sender;
+	cocos2d::Node* listener;
     cocos2d::yhge::SEL_EventHandle handle;
 	
 } EventRegisterData;
 
 typedef struct Event_Dispatch_Data{
 	int type;
-	cocos2d::Ref* sender;
-	cocos2d::Ref* data;
+	cocos2d::Node* sender;
+	cocos2d::Node* data;
 } EventDispatchData;
 
 typedef struct Event_Data_Item{

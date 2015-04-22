@@ -1,5 +1,5 @@
 #include "HelloWorldScene.h"
-#include "TestMessage/TestMessage.h"
+#include "Test.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE;
@@ -38,10 +38,10 @@ bool HelloWorld::init()
 
     // add a "close" icon to exit the progress. it's an autorelease object
     
-	TestMessage* tm=new TestMessage();
-	tm->run();
+	Test* test = new Test();
+	test->start();
 
-	tm->release();
+	test->release();
     
     return true;
 }

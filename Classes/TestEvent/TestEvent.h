@@ -9,6 +9,9 @@ public:
     void run();
     void testRegiestAndSend();
     void testRemove();
+
+private:
+	void showTestFail(const char* msg);
 };
 
 #endif  // YHGEGEST_TESTEVENT_TESTEVENT_H_
